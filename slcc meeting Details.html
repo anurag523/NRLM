@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SLCC Meeting Details Form</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      form {
+        max-width: 700px;
+        margin: auto;
+      }
+      label {
+        display: block;
+        margin: 10px 0 5px;
+        font-weight: bold;
+      }
+      input[type="text"],
+      input[type="date"],
+      textarea,
+      select {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      input[type="file"] {
+        margin-bottom: 15px;
+      }
+      .radio-group,
+      .checkbox-group {
+        margin-bottom: 15px;
+      }
+      .radio-group label,
+      .checkbox-group label {
+        font-weight: normal;
+        margin-right: 15px;
+      }
+      #other_chaired_by_input {
+        display: none;
+        margin-top: -10px;
+      }
+      button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    </style>
+    <script>
+      function toggleOtherChairedByInput() {
+        const otherRadio = document.getElementById("chaired_by_other");
+        const otherInput = document.getElementById("other_chaired_by_input");
+        otherInput.style.display = otherRadio.checked ? "block" : "none";
+      }
+    </script>
+  </head>
+  <body>
+    <form>
+      <h2>SLCC Meeting Details</h2>
+
+      <label for="date">Date</label>
+      <input type="date" id="date" name="date" />
+
+      <label for="last_meeting">Last Meeting Held On</label>
+      <input type="date" id="last_meeting" name="last_meeting" />
+
+      <label for="next_meeting">Next Meeting Date (Tentative)</label>
+      <input type="date" id="next_meeting" name="next_meeting" />
+
+      <label for="decisions">Venue of Meeting</label>
+      <textarea id="Venue" name="Venue" rows="2"></textarea>
+
+      <label>Meeting Chaired By</label>
+      <div class="radio-group">
+        <label
+          ><input
+            type="radio"
+            name="chaired_by"
+            value="Option 1"
+            onclick="toggleOtherChairedByInput()"
+          />
+          Additional Chief Secretary -RL</label
+        >
+        <label
+          ><input
+            type="radio"
+            name="chaired_by"
+            value="Option 2"
+            onclick="toggleOtherChairedByInput()"
+          />
+          Additional Chief Secretary -PR</label
+        >
+        <label
+          ><input
+            type="radio"
+            name="chaired_by"
+            value="Option 3"
+            onclick="toggleOtherChairedByInput()"
+          />
+          Principal Secretary -RL</label
+        >
+        <label
+          ><input
+            type="radio"
+            name="chaired_by"
+            value="Option 4"
+            onclick="toggleOtherChairedByInput()"
+          />
+          Principal Secretary -PR</label
+        >
+        <label
+          ><input
+            type="radio"
+            id="chaired_by_other"
+            name="chaired_by"
+            value="Other"
+            onclick="toggleOtherChairedByInput()"
+          />
+          Others</label
+        >
+        <input
+          type="text"
+          id="other_chaired_by_input"
+          name="other_chaired_by"
+          placeholder="Please specify"
+        />
+      </div>
+
+      <label for="participant_count">Count of Participants</label>
+      <input type="text" id="participant_count" name="participant_count" />
+
+      <label for="departments"
+        >Members Participated from Departments (Multi Select)</label
+      >
+      <select id="departments" name="departments" multiple>
+        <option value="Dept1">Rural Development</option>
+        <option value="Dept2">Panchayati Raj</option>
+        <option value="Dept3">Agriculture</option>
+        <option value="Dept4">Fisheries, Sericulture</option>
+        <option value="Dept5">Tribal welfare</option>
+        <option value="Dept6">Women and Child Development</option>
+        <option value="Dept7">Health and Family Welfare</option>
+        <option value="Dept8">Education</option>
+        <option value="Dept9">PHED/Water and Sanitation</option>
+        <option value="Dept10">Social Welfare</option>
+        <option value="Dept11">MSME</option>
+        <option value="Dept12">MoFPE</option>
+        <option value="other">Other</option>
+      </select>
+
+      <label for="discussion">Key Points Discussed</label>
+      <textarea id="discussion" name="discussion" rows="4"></textarea>
+
+      <label for="decisions">Key Decisions Taken</label>
+      <textarea id="decisions" name="decisions" rows="4"></textarea>
+
+      <label for="mom">Upload MoM (PDF, DOCX)</label>
+      <input type="file" id="mom" name="mom" accept=".pdf,.doc,.docx" />
+
+      <label for="pictures">Upload Pictures of Meeting (Min 2 - Max 4)</label>
+      <input
+        type="file"
+        id="pictures"
+        name="pictures"
+        accept="image/*"
+        multiple
+      />
+
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>
