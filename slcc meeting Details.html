@@ -102,6 +102,27 @@
           otherInputConvener.value = ""; // Optional: clear input when hidden
         }
       }
+      // Function to toggle enabling/disabling the "No. of Members" input and "Is member present" checkbox
+      function toggleInputs(departmentId) {
+        const deptCheckBox = document.getElementById(`${departmentId}_check`);
+        const memberCountInput = document.getElementById(
+          `${departmentId}_count`
+        );
+        const presentCheckbox = document.getElementById(
+          `${departmentId}_present`
+        );
+
+        // If the left checkbox is checked, enable the number input and the right checkbox
+        if (deptCheckBox.checked) {
+          memberCountInput.disabled = false;
+          presentCheckbox.disabled = false;
+        } else {
+          // If unchecked, disable the number input and the right checkbox, and uncheck them
+          memberCountInput.disabled = true;
+          presentCheckbox.disabled = true;
+          presentCheckbox.checked = false;
+        }
+      }
     </script>
   </head>
   <body>
@@ -170,129 +191,252 @@
       <label for="participant_count">Count of Participants</label>
       <input type="text" id="participant_count" name="participant_count" />
 
-      <label for="departments"
+      <label
+        for="departments"
+        style="
+          display: flex;
+          font-weight: bold;
+          border-bottom: 1px solid #ccc;
+          padding-bottom: 0px;
+        "
         >Members Participated from Departments (Multi Select)</label
       >
+      <!-- Header Row -->
+      <div
+        class="dept-row"
+        style="
+          display: flex;
+          font-weight: bold;
+          border-bottom: 1px solid #ccc;
+          padding-bottom: 0px;
+        "
+      >
+        <div style="width: 50px"></div>
+        <div style="width: 350px">Department</div>
+        <div style="width: 250px">No. of Members</div>
+        <div style="width: 200px">Is member from committee present</div>
+      </div>
       <div id="departments-container">
-        <!-- Example row, copy structure for all departments -->
-        <div class="dept-row">
-          <input type="checkbox" id="dept1" value="Rural Development" />
-          <label for="dept1">Rural Development</label>
+        <!-- Department Rows -->
+        <div
+          class="dept-row"
+          style="display: flex; align-items: center; margin-bottom: 10px"
+        >
+          <input
+            type="checkbox"
+            id="dept1_check"
+            onchange="toggleInputs('dept1')"
+          />
+          <label for="dept1_check" style="width: 275px"
+            >Rural Development</label
+          >
           <input
             type="number"
-            name="dept1_count"
+            id="dept1_count"
             placeholder="No. of members"
             min="0"
             disabled
+            style="width: 200px"
+          />
+          <input
+            type="checkbox"
+            id="dept1_present"
+            disabled
+            style="margin-left: 20px"
           />
         </div>
 
-        <div class="dept-row">
-          <input type="checkbox" id="dept2" value="Panchayati Raj" />
-          <label for="dept2">Panchayati Raj</label>
+        <div
+          class="dept-row"
+          style="display: flex; align-items: center; margin-bottom: 10px"
+        >
+          <input
+            type="checkbox"
+            id="dept2_check"
+            onchange="toggleInputs('dept2')"
+          />
+          <label for="dept2_check" style="width: 275px">Panchayati Raj</label>
           <input
             type="number"
-            name="dept2_count"
+            id="dept2_count"
             placeholder="No. of members"
             min="0"
             disabled
+            style="width: 200px"
+          />
+          <input
+            type="checkbox"
+            id="dept2_present"
+            disabled
+            style="margin-left: 20px"
           />
         </div>
 
-        <div class="dept-row">
-          <input type="checkbox" id="dept3" value="Agriculture" />
-          <label for="dept3">Agriculture</label>
-          <input
-            type="number"
-            name="dept3_count"
-            placeholder="No. of members"
-            min="0"
-            disabled
-          />
-        </div>
-        <div class="dept-row">
-          <input type="checkbox" id="dept4" value="Fisheries_Sericulture" />
-          <label for="dept4">Fisheries, Sericulture</label>
-          <input
-            type="number"
-            name="dept4_count"
-            placeholder="No. of members"
-            min="0"
-            disabled
-          />
-        </div>
-        <div class="dept-row">
-          <input type="checkbox" id="dept5" value="Tribal_welfare" />
-          <label for="dept5">Tribal welfare</label>
-          <input
-            type="number"
-            name="dept5_count"
-            placeholder="No. of members"
-            min="0"
-            disabled
-          />
-        </div>
-        <div class="dept-row">
+        <div
+          class="dept-row"
+          style="display: flex; align-items: center; margin-bottom: 10px"
+        >
           <input
             type="checkbox"
-            id="dept6"
-            value="Women_and_Child_Development"
+            id="dept3_check"
+            onchange="toggleInputs('dept3')"
           />
-          <label for="dept6">Women and Child Development</label>
+          <label for="dept3_check" style="width: 275px">Agriculture</label>
           <input
             type="number"
-            name="dept6_count"
+            id="dept3_count"
             placeholder="No. of members"
             min="0"
             disabled
+            style="width: 200px"
           />
-        </div>
-        <div class="dept-row">
-          <input type="checkbox" id="dept7" value="Health_and_Family_Welfare" />
-          <label for="dept7">Health and Family Welfare</label>
-          <input
-            type="number"
-            name="dept7_count"
-            placeholder="No. of members"
-            min="0"
-            disabled
-          />
-        </div>
-        <div class="dept-row">
-          <input type="checkbox" id="dept8" value="Education" />
-          <label for="dept8">Education</label>
-          <input
-            type="number"
-            name="dept8_count"
-            placeholder="No. of members"
-            min="0"
-            disabled
-          />
-        </div>
-        <div class="dept-row">
           <input
             type="checkbox"
-            id="other"
-            name="departments[]"
-            value="Other"
+            id="dept3_present"
+            disabled
+            style="margin-left: 20px"
           />
-          <label for="other">Other</label>
+        </div>
+
+        <div
+          class="dept-row"
+          style="display: flex; align-items: center; margin-bottom: 10px"
+        >
           <input
-            type="text"
-            name="other_dept_name"
-            placeholder="Department name"
+            type="checkbox"
+            id="dept4_check"
+            onchange="toggleInputs('dept4')"
           />
+          <label for="dept4_check" style="width: 275px"
+            >Fisheries, Sericulture</label
+          >
           <input
             type="number"
-            name="other_count"
+            id="dept4_count"
             placeholder="No. of members"
             min="0"
+            disabled
+            style="width: 200px"
+          />
+          <input
+            type="checkbox"
+            id="dept4_present"
+            disabled
+            style="margin-left: 20px"
+          />
+        </div>
+
+        <div
+          class="dept-row"
+          style="display: flex; align-items: center; margin-bottom: 10px"
+        >
+          <input
+            type="checkbox"
+            id="dept5_check"
+            onchange="toggleInputs('dept5')"
+          />
+          <label for="dept5_check" style="width: 275px">Tribal Welfare</label>
+          <input
+            type="number"
+            id="dept5_count"
+            placeholder="No. of members"
+            min="0"
+            disabled
+            style="width: 200px"
+          />
+          <input
+            type="checkbox"
+            id="dept5_present"
+            disabled
+            style="margin-left: 20px"
+          />
+        </div>
+
+        <div
+          class="dept-row"
+          style="display: flex; align-items: center; margin-bottom: 10px"
+        >
+          <input
+            type="checkbox"
+            id="dept6_check"
+            onchange="toggleInputs('dept6')"
+          />
+          <label for="dept6_check" style="width: 275px"
+            >Women and Child Development</label
+          >
+          <input
+            type="number"
+            id="dept6_count"
+            placeholder="No. of members"
+            min="0"
+            disabled
+            style="width: 200px"
+          />
+          <input
+            type="checkbox"
+            id="dept6_present"
+            disabled
+            style="margin-left: 20px"
+          />
+        </div>
+
+        <div
+          class="dept-row"
+          style="display: flex; align-items: center; margin-bottom: 10px"
+        >
+          <input
+            type="checkbox"
+            id="dept7_check"
+            onchange="toggleInputs('dept7')"
+          />
+          <label for="dept7_check" style="width: 275px"
+            >Health and Family Welfare</label
+          >
+          <input
+            type="number"
+            id="dept7_count"
+            placeholder="No. of members"
+            min="0"
+            disabled
+            style="width: 200px"
+          />
+          <input
+            type="checkbox"
+            id="dept7_present"
+            disabled
+            style="margin-left: 20px"
+          />
+        </div>
+
+        <div
+          class="dept-row"
+          style="display: flex; align-items: center; margin-bottom: 10px"
+        >
+          <input
+            type="checkbox"
+            id="dept8_check"
+            onchange="toggleInputs('dept8')"
+          />
+          <label for="dept8_check" style="width: 275px">Education</label>
+          <input
+            type="number"
+            id="dept8_count"
+            placeholder="No. of members"
+            min="0"
+            disabled
+            style="width: 200px"
+          />
+          <input
+            type="checkbox"
+            id="dept8_present"
+            disabled
+            style="margin-left: 20px"
           />
         </div>
       </div>
-
+      <br />
       <label for="decisions">Key Decisions Taken</label>
-      <textarea id="decisions" name="decisions" rows="4"></textarea>
+      <textarea id="decisions" name="decisions" rows="6"></textarea>
 
       <label for="mom"
         >Upload MoM (PDF, DOCX) (please mention max size of document)</label
