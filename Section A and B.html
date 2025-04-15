@@ -63,33 +63,29 @@
 
       <label for="state">Name of the State / UT</label>
       <select id="state" name="state">
-        <option value="">-- Select --</option>
-        <option value="Andhra Pradesh">Andhra Pradesh</option>
-        <option value="Karnataka">Karnataka</option>
-        <option value="Odisha">Odisha</option>
-        <!-- Add all states/UTs -->
+        <option value="">
+          --Auto-populated based on the logged-in user ID --
+        </option>
       </select>
 
       <label for="slcc_status">SLCC Constituted</label>
-      <select id="slcc_status" name="slcc_status">
+      <select
+        id="slcc_status"
+        name="slcc_status"
+        onchange="toggleConstitutionDate()"
+      >
+        <option value="">-- Select --</option>
         <option value="Yes">Yes</option>
         <option value="No">No</option>
       </select>
 
       <label for="constitution_date">Date of Constitution</label>
-      <input type="date" id="constitution_date" name="constitution_date" />
-
-      <label for="nodal_person">Nodal Person</label>
-      <input type="text" id="nodal_person" name="nodal_person" />
-
-      <label for="contact_person">Contact Person (Name & Designation)</label>
-      <input type="text" id="contact_person" name="contact_person" />
-
-      <label for="email">Email ID of Nodal Officer</label>
-      <input type="email" id="email" name="email" />
-
-      <label for="phone">Contact Number of Nodal Officer</label>
-      <input type="text" id="phone" name="phone" />
+      <input
+        type="date"
+        id="constitution_date"
+        name="constitution_date"
+        disabled
+      />
 
       <label for="frequency">Frequency of SLCC Meetings</label>
       <input type="text" id="frequency" name="frequency" />
@@ -103,7 +99,6 @@
             <th>Member Name</th>
             <th>Designation</th>
             <th>Department/Organization</th>
-            <th>Role in SLCC</th>
           </tr>
         </thead>
         <tbody>
@@ -112,47 +107,181 @@
             <td>1</td>
             <td><input type="text" name="member1_name" /></td>
             <td><input type="text" name="member1_designation" /></td>
-            <td><input type="text" name="member1_department" /></td>
             <td>
-              <input
-                type="text"
-                name="member1_role"
-                placeholder="Chairperson / Member / Secretary"
-              />
+              <select name="member1_department">
+                <option value="">-- Select Department --</option>
+                <option value="Rural Development">Rural Development</option>
+                <option value="Panchayati Raj">Panchayati Raj</option>
+                <option value="Agriculture">Agriculture</option>
+                <option value="Fisheries and Sericulture">
+                  Fisheries and Sericulture
+                </option>
+                <option value="Tribal Welfare">Tribal Welfare</option>
+                <option value="Women and Child Development">
+                  Women and Child Development
+                </option>
+                <option value="Health and Family Welfare">
+                  Health and Family Welfare
+                </option>
+                <option value="Education">Education</option>
+              </select>
             </td>
           </tr>
           <tr>
             <td>2</td>
             <td><input type="text" name="member2_name" /></td>
             <td><input type="text" name="member2_designation" /></td>
-            <td><input type="text" name="member2_department" /></td>
-            <td><input type="text" name="member2_role" /></td>
+            <td>
+              <select name="member2_department">
+                <option value="">-- Select Department --</option>
+                <option value="Rural Development">Rural Development</option>
+                <option value="Panchayati Raj">Panchayati Raj</option>
+                <option value="Agriculture">Agriculture</option>
+                <option value="Fisheries and Sericulture">
+                  Fisheries and Sericulture
+                </option>
+                <option value="Tribal Welfare">Tribal Welfare</option>
+                <option value="Women and Child Development">
+                  Women and Child Development
+                </option>
+                <option value="Health and Family Welfare">
+                  Health and Family Welfare
+                </option>
+                <option value="Education">Education</option>
+              </select>
+            </td>
           </tr>
           <tr>
             <td>3</td>
             <td><input type="text" name="member3_name" /></td>
             <td><input type="text" name="member3_designation" /></td>
-            <td><input type="text" name="member3_department" /></td>
-            <td><input type="text" name="member3_role" /></td>
+            <td>
+              <select name="member3_department">
+                <option value="">-- Select Department --</option>
+                <option value="Rural Development">Rural Development</option>
+                <option value="Panchayati Raj">Panchayati Raj</option>
+                <option value="Agriculture">Agriculture</option>
+                <option value="Fisheries and Sericulture">
+                  Fisheries and Sericulture
+                </option>
+                <option value="Tribal Welfare">Tribal Welfare</option>
+                <option value="Women and Child Development">
+                  Women and Child Development
+                </option>
+                <option value="Health and Family Welfare">
+                  Health and Family Welfare
+                </option>
+                <option value="Education">Education</option>
+              </select>
+            </td>
           </tr>
           <tr>
             <td>4</td>
             <td><input type="text" name="member4_name" /></td>
             <td><input type="text" name="member4_designation" /></td>
-            <td><input type="text" name="member4_department" /></td>
-            <td><input type="text" name="member4_role" /></td>
+            <td>
+              <select name="member4_department">
+                <option value="">-- Select Department --</option>
+                <option value="Rural Development">Rural Development</option>
+                <option value="Panchayati Raj">Panchayati Raj</option>
+                <option value="Agriculture">Agriculture</option>
+                <option value="Fisheries and Sericulture">
+                  Fisheries and Sericulture
+                </option>
+                <option value="Tribal Welfare">Tribal Welfare</option>
+                <option value="Women and Child Development">
+                  Women and Child Development
+                </option>
+                <option value="Health and Family Welfare">
+                  Health and Family Welfare
+                </option>
+                <option value="Education">Education</option>
+              </select>
+            </td>
           </tr>
           <tr>
             <td>5</td>
             <td><input type="text" name="member5_name" /></td>
             <td><input type="text" name="member5_designation" /></td>
-            <td><input type="text" name="member5_department" /></td>
-            <td><input type="text" name="member5_role" /></td>
+            <td>
+              <select name="member5_department">
+                <option value="">-- Select Department --</option>
+                <option value="Rural Development">Rural Development</option>
+                <option value="Panchayati Raj">Panchayati Raj</option>
+                <option value="Agriculture">Agriculture</option>
+                <option value="Fisheries and Sericulture">
+                  Fisheries and Sericulture
+                </option>
+                <option value="Tribal Welfare">Tribal Welfare</option>
+                <option value="Women and Child Development">
+                  Women and Child Development
+                </option>
+                <option value="Health and Family Welfare">
+                  Health and Family Welfare
+                </option>
+                <option value="Education">Education</option>
+              </select>
+            </td>
           </tr>
         </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="5" style="text-align: right">
+              <button type="button" onclick="addMemberRow()">
+                ➕ Add Member
+              </button>
+            </td>
+          </tr>
+        </tfoot>
       </table>
 
       <button class="submit-btn" type="submit">Submit</button>
     </form>
+
+    <script>
+      let memberCount = 5;
+
+      function addMemberRow() {
+        memberCount++;
+        const tableBody = document.querySelector("table tbody");
+
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${memberCount}</td>
+          <td><input type="text" name="member${memberCount}_name" /></td>
+          <td><input type="text" name="member${memberCount}_designation" /></td>
+          <td>
+            <select name="member${memberCount}_department">
+              <option value="">-- Select Department --</option>
+              <option value="Rural Development">Rural Development</option>
+              <option value="Panchayati Raj">Panchayati Raj</option>
+              <option value="Agriculture">Agriculture</option>
+              <option value="Fisheries and Sericulture">Fisheries and Sericulture</option>
+              <option value="Tribal Welfare">Tribal Welfare</option>
+              <option value="Women and Child Development">Women and Child Development</option>
+              <option value="Health and Family Welfare">Health and Family Welfare</option>
+              <option value="Education">Education</option>
+            </select>
+          </td>
+        `;
+
+        tableBody.appendChild(row);
+      }
+//<!--added by anurag kuamr-->
+      function toggleConstitutionDate() {
+        const status = document.getElementById("slcc_status").value;
+        const dateField = document.getElementById("constitution_date");
+
+        if (status === "Yes") {
+          dateField.disabled = false;
+        } else {
+          dateField.disabled = true;
+          dateField.value = ""; // Clear the date if disabled
+        }
+      }
+
+      // Optional: call once on page load in case form is pre-filled
+      window.onload = toggleConstitutionDate;
+    </script>
   </body>
 </html>
