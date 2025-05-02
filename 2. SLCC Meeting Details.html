@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SLCC Meeting Details Form</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      form {
+        max-width: 95%;
+        margin: auto;
+      }
+      label {
+        display: block;
+        margin: 10px 0 5px;
+        font-weight: bold;
+      }
+      input[type="text"],
+      input[type="date"],
+      textarea,
+      select {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      input[type="file"] {
+        margin-bottom: 15px;
+      }
+      .radio-group,
+      .checkbox-group {
+        margin-bottom: 15px;
+      }
+      .radio-group label,
+      .checkbox-group label {
+        font-weight: normal;
+        margin-right: 15px;
+      }
+      #other_chaired_by_input {
+        display: none;
+        margin-top: 5px;
+      }
+      #other_chaired_by_convener {
+        display: none;
+        margin-top: 5px;
+      }
+
+      button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .dept-row {
+        display: flex;
+        align-items: center;
+        margin-bottom: 8px;
+        gap: 12px;
+      }
+      .dept-row label {
+        width: 250px;
+      }
+      .dept-row input[type="number"],
+      .dept-row input[type="text"] {
+        width: 150px;
+      }
+      #departments-container,
+      #chairedBy-container {
+        border: 1px solid #ccc;
+        padding: 16px;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+        margin-top: 10px;
+      } table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+      th,
+      td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: left;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+      table input {
+        width: 100%;
+        box-sizing: border-box;
+      }
+      .submit-btn {
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    </style>
+    <script>
+      function toggleOtherChairedByInput() {
+        const otherRadio = document.getElementById("chaired_by_other");
+        const convenerRadio = document.getElementById("chaired_by_convener");
+        const otherInput = document.getElementById("other_chaired_by_input");
+        const otherInputConvener = document.getElementById(
+          "other_chaired_by_convener"
+        );
+
+        if (otherRadio.checked) {
+          otherInput.style.display = "block";
+        } else {
+          otherInput.style.display = "none";
+          otherInput.value = ""; // Optional: clear input when hidden
+        }
+
+        if (convenerRadio.checked) {
+          otherInputConvener.style.display = "block";
+        } else {
+          otherInputConvener.style.display = "none";
+          otherInputConvener.value = ""; // Optional: clear input when hidden
+        }
+      }
+      // Function to toggle enabling/disabling the "No. of Members" input and "Is member present" checkbox
+      function toggleInputs(departmentId) {
+        const deptCheckBox = document.getElementById(`${departmentId}_check`);
+        const memberCountInput = document.getElementById(
+          `${departmentId}_count`
+        );
+        const presentCheckbox = document.getElementById(
+          `${departmentId}_present`
+        );
+
+        // If the left checkbox is checked, enable the number input and the right checkbox
+        if (deptCheckBox.checked) {
+          memberCountInput.disabled = false;
+          presentCheckbox.disabled = false;
+        } else {
+          // If unchecked, disable the number input and the right checkbox, and uncheck them
+          memberCountInput.disabled = true;
+          presentCheckbox.disabled = true;
+          presentCheckbox.checked = false;
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <form>
+      <h2>Section C: SLCC Meeting Details</h2>
+
+      <label for="date">Date</label>
+      <input type="date" id="date" name="date" />
+
+      <label>Meeting Chaired By</label>
+      <div id="chairedBy-container">
+        <div class="radio-group">
+          <label
+            ><input
+              type="radio"
+              name="chaired_by"
+              value="Chairperson"
+              onclick="toggleOtherChairedByInput()"
+            />
+            Chairperson</label
+          >
+          <label
+            ><input
+              type="radio"
+              id="chaired_by_convener"
+              name="chaired_by"
+              value="Convener"
+              onclick="toggleOtherChairedByInput()"
+            />
+            Convener</label
+          >
+          <input
+            type="text"
+            id="other_chaired_by_convener"
+            name="other_chaired_by_convener"
+            placeholder="Please Specify Convener Details"
+          />
+          <label
+            ><input
+              type="radio"
+              name="chaired_by"
+              value="Members"
+              onclick="toggleOtherChairedByInput()"
+            />
+            Members</label
+          
+          ><input
+          type="radio"
+          name="chaired_by"
+          value="Secretary"
+          onclick="toggleOtherChairedByInput()"
+        />
+        Secretary</label
+      >
+          <label
+            ><input
+              type="radio"
+              id="chaired_by_other"
+              name="chaired_by"
+              value="Other"
+              onclick="toggleOtherChairedByInput()"
+            />
+            Others</label
+          >
+          <input
+            type="text"
+            id="other_chaired_by_input"
+            name="other_chaired_by"
+            placeholder="Please specify"
+          />
+        </div>
+      </div>
+
+      <label for="participant_count">Count of Participants</label>
+      <input type="text" id="participant_count" name="participant_count" />
+
+      <h2>Committee Member Present in the Meeting</h2>
+
+      <table style="width:100%">
+        <thead>
+          <tr>
+            <th style="width:5%">S. No.</th>
+            <th>Member Name</th>
+            <th>Designation In Committee</th>
+            <th>Designation In Department</th>
+            <th>Department/Organization</th>
+            <th style="width:10%">Is Present</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Repeat rows as needed -->
+          <tr>
+            <td>1</td>
+            <td><input type="text" name="member1_name" placeholder="Member name fetched automatically" /></td>
+            <td><input type="text" name="Desig_in_Committee" placeholder="Fetched automatically" /></td>
+            <td><input type="text" name="Desig_in_dept" placeholder="Fetched automatically"/></td>     
+            <td><input type="text" name="deprt" placeholder="Fetched automatically"/></td>
+            <td>
+              <span style="display: inline-flex; align-items: center; margin-right: 15px;">
+                <input type="radio" name="agree2" value="yes" id="agree2_yes" style="margin-right: 5px;">
+                <label for="agree2_yes">Yes</label>
+              </span>
+              <span style="display: inline-flex; align-items: center;">
+                <input type="radio" name="agree2" value="no" id="agree2_no" style="margin-right: 5px;">
+                <label for="agree2_no">No</label>
+              </span>
+            </td>         
+          </tr>
+          <tr>
+            <td>2</td>
+            <td><input type="text" name="member2_name" placeholder="Member name fetched automatically" /></td>
+            <td><input type="text" name="Desig_in_Committee" placeholder="Fetched automatically"/></td>
+            <td><input type="text" name="Desig_in_dept" placeholder="Fetched automatically"/></td>     
+            <td><input type="text" name="deprt" placeholder="Fetched automatically" /></td>
+            <td>
+              <span style="display: inline-flex; align-items: center; margin-right: 15px;">
+                <input type="radio" name="agree2" value="yes" id="agree2_yes" style="margin-right: 5px;">
+                <label for="agree2_yes">Yes</label>
+              </span>
+              <span style="display: inline-flex; align-items: center;">
+                <input type="radio" name="agree2" value="no" id="agree2_no" style="margin-right: 5px;">
+                <label for="agree2_no">No</label>
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td><input type="text" name="member2_name" placeholder="Member name fetched automatically"/></td>
+            <td><input type="text" name="Desig_in_Committee" placeholder="Fetched automatically" /></td>
+            <td><input type="text" name="Desig_in_dept" placeholder="Fetched automatically" /></td>     
+            <td><input type="text" name="deprt" placeholder="Fetched automatically"/></td>
+            <td>
+              <span style="display: inline-flex; align-items: center; margin-right: 15px;">
+                <input type="radio" name="agree2" value="yes" id="agree2_yes" style="margin-right: 5px;">
+                <label for="agree2_yes">Yes</label>
+              </span>
+              <span style="display: inline-flex; align-items: center;">
+                <input type="radio" name="agree2" value="no" id="agree2_no" style="margin-right: 5px;">
+                <label for="agree2_no">No</label>
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td><input type="text" name="member2_name" placeholder="Member name fetched automatically" /></td>
+            <td><input type="text" name="Desig_in_Committee" placeholder="Fetched automatically" /></td>
+            <td><input type="text" name="Desig_in_dept" placeholder="Fetched automatically" /></td>     
+            <td><input type="text" name="deprt" placeholder="Fetched automatically"/></td>
+            <td>
+              <span style="display: inline-flex; align-items: center; margin-right: 15px;">
+                <input type="radio" name="agree2" value="yes" id="agree2_yes" style="margin-right: 5px;">
+                <label for="agree2_yes">Yes</label>
+              </span>
+              <span style="display: inline-flex; align-items: center;">
+                <input type="radio" name="agree2" value="no" id="agree2_no" style="margin-right: 5px;">
+                <label for="agree2_no">No</label>
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td><input type="text" name="member2_name" placeholder="Member name fetched automatically"/></td>
+            <td><input type="text" name="Desig_in_Committee" placeholder="Fetched automatically" /></td>
+            <td><input type="text" name="Desig_in_dept" placeholder="Fetched automatically" /></td>     
+            <td><input type="text" name="deprt" placeholder="Fetched automatically" /></td>
+            <td>
+              <span style="display: inline-flex; align-items: center; margin-right: 15px;">
+                <input type="radio" name="agree2" value="yes" id="agree2_yes" style="margin-right: 5px;">
+                <label for="agree2_yes">Yes</label>
+              </span>
+              <span style="display: inline-flex; align-items: center;">
+                <input type="radio" name="agree2" value="no" id="agree2_no" style="margin-right: 5px;">
+                <label for="agree2_no">No</label>
+              </span>
+            </td>
+          </tr>
+        </tbody>  
+      </table>
+
+      <h2>Non-Committee Members Present in the Meeting</h2>
+      <table style="width:100%">
+        <thead>
+          <tr>
+            <th style="width:5%">S. No.</th>
+            <th>Participant Name</th>
+            <th>Designation In Department</th>
+            <th>Department/Organization</th>
+           
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Repeat rows as needed -->
+          <tr>
+            <td>1</td>
+            <td><input type="text" name="member1_name" placeholder="Name of Participant" /></td>
+            <td><input type="text" name="Desig_in_dept" placeholder="Participant Designation in Deptt."/></td>     
+            <td><input type="text" name="deprt" placeholder="Participant Department"/></td>
+       
+          </tr>
+          <tr>
+            <td>2</td>
+            <td><input type="text" name="member2_name" placeholder="Name of Participant" /></td>
+            <td><input type="text" name="Desig_in_dept" placeholder="Participant Designation in Deptt."/></td>     
+            <td><input type="text" name="deprt" placeholder="Participant Department" /></td>
+
+          </tr>
+          <tr>
+            <td>3</td>
+            <td><input type="text" name="member2_name" placeholder="Name of Participant"/></td>
+            <td><input type="text" name="Desig_in_dept" placeholder="Participant Designation in Deptt." /></td>     
+            <td><input type="text" name="deprt" placeholder="Participant Department"/></td>
+
+          </tr>
+
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="5" style="text-align: right">
+              <button type="button" onclick="addMemberRow()">
+                ➕ Add Member
+              </button>
+            </td>
+          </tr>
+        </tfoot>
+        
+      </table>
+      <br />
+      <label for="decisions">Key Decisions Taken</label>
+      <textarea id="decisions" name="decisions" rows="6"></textarea>
+
+      <label for="mom"
+        >Upload MoM (PDF, DOCX) (please mention max size of document)</label
+      >
+      <input type="file" id="mom" name="mom" accept=".pdf,.doc,.docx" />
+
+      <label for="pictures"
+        >Upload Pictures of Meeting (Min 1 - Max 2)(please mention max size of
+        document)</label
+      >
+      <input
+        type="file"
+        id="pictures"
+        name="pictures"
+        accept="image/*"
+        multiple
+      />
+      <br />
+      <button type="submit">Submit</button>
+    </form>
+    <script>
+      document
+        .querySelectorAll("#departments-container .dept-row")
+        .forEach((row) => {
+          const checkbox = row.querySelector('input[type="checkbox"]');
+          const inputs = row.querySelectorAll('input:not([type="checkbox"])');
+
+          checkbox.addEventListener("change", () => {
+            inputs.forEach((input) => {
+              input.disabled = !checkbox.checked;
+              if (!checkbox.checked) input.value = ""; // Clear value if unchecked
+            });
+          });
+
+          inputs.forEach((input) => {
+            if (input.type === "number") {
+              input.addEventListener("input", () => {
+                if (input.value < 0) input.value = 0;
+              });
+            }
+          });
+        });
+
+        
+    </script>
+  </body>
+</html>

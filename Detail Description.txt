@@ -1,0 +1,80 @@
+1.Section A
+Name of State / UT 
+	Auto populated based on userid logged in with.
+SLCC Constituted - Yes/No
+Date of Constitution
+	Enabled-if SLCC Constituted = Yes. user can enter the date of constitution
+	Disabled-if SLCC Constituted = No. In this case user can not be able to enter date.
+
+
+Section B: Committee Composition
+Member Name: Name of member of Committee
+Designation In Committee: Designation of member in Committee
+Designation In Department: Designation of member in department
+Department/Organization:
+	Drop down list with department name.
+	user have to select the department from which the member belong to.
+	if list does not contain the required department then that can entered through backend. user have to inform about such department.
+	The predefined list is used to reduce ambiguity and ensure consistency in the report.
+	
+Note: (i) Section A and B are one time entry
+      (ii) Section A and B are also editable, user edit Section A and B in case of trasfer or change of member.
+-------------------------
+
+2. Section C: SLCC Meeting Details
+Entered after each meeting. This section is used to keep record of each meeting.
+
+Date: Date of Meeting
+Meeting Chaired By: select from given option
+	in case of Convener or Other - "please specify" option will be there.
+
+Count of participant: This is show the sum of all member in meeting
+
+Committee Member Present in the Meeting
+	In this section all the member entered by user in Section B, should be populated automatically i.e ( Member Name, Designation in Committee, Designation in Department and Department/Organization) 
+	Is Present - user have to enter whether the member present int the meeting or not by clicked radio button - Yes or No.
+	
+Non-Committee Members Present in the Meeting
+	if any member who is not part of committee and attend the meeting. detail of such person should be entered in this section.
+	(i) Participant Name - Name of participant
+	(ii)Designation in Department - Designation of participant in the department
+	(iii)Department/Organization - from which participant belongs to.
+
+Key Discussion point
+	user will enter the key discussion point
+
+Upload MoM
+	user will have to upload the MoM
+
+Upload Picture
+	user will have to upload the picture of meeting
+
+Submit:
+	only enabled if MoM and meeting picture uploaded.
+
+---------------------------
+3. Report - coordination committee at a glance
+	(i) State
+	(ii)Date of Meeting
+	(iii)Total Member In Committee
+	(iii)Total Committee member present in Meeting
+	(iv)Total Participant in the meeting (including member and non member of committee)
+	(v)Minutes
+	(vi)Meeting Picture
+	(vii)Detail report - link to report " SLCC Detailed Meeting report"
+---------------------------
+4. Coordination Committee (SLCC) Meeting Report
+	This report contain all department wise details.
+	(i) Meeting Date
+	(ii)Meeting Chaired By
+	(iii) Total count of participant - Total participant including member and non member
+	(iv)Participation by Department wise
+		(a)Department
+		(b)Total Participation in Meeting
+		(c)Total committee member present in meeting - 
+	(iV) Committee Member's Participation\
+		in this section all the member list will be displayed will all the detail mentioned in the screenshot ( Member Name, Designation in Committee, Designation in department, Department name, Is present in meeting or not )
+	Key Decision Taken
+		To be fetched from whatever entered by user in section C.
+
+
